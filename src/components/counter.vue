@@ -8,7 +8,7 @@
 
 	 	<p class="status-change-nam">На сегодня в банке для обмена доступно <span>{{arrayRateCouner.length}}</span> валюты</p>
 
-	 	<inputrow  v-for="item in arrayRateCouner" :rateProps="item" />
+	 	<inputrow  v-for="item in arrayRateCouner" :key="item.id" :rateProps="item" />
 
 	 </div>
 </template>
@@ -21,8 +21,8 @@
 		},
 		data(){
 			return{
-				apiKeyNal: 'http://localhost:8080/p24api/pubinfo?json&exchange&coursid=5',
-				apiKeyBeznal: 'http://localhost:8080/p24api/pubinfo?exchange&json&coursid=11',
+				apiKeyNal: 'https://cors-anywhere.herokuapp.com/https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
+				apiKeyBeznal: 'https://cors-anywhere.herokuapp.com/https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11',
 				arrayPrise1: [],
 				arrayRateCouner: [],
 				isActiveBtNzNal: true,

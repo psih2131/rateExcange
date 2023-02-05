@@ -13,9 +13,9 @@
      <div class="row-rate__box">Покупка</div>
      <div class="row-rate__box">Продажа</div>
    </div>
-   <div class="errorLoad" :class = "{'errorLoadActive': activError}">{{errorLoad}}</div>
+   <div class="errorLoad" :class="{errorLoadActive: activError}">{{errorLoad}}</div>
 
-   <list v-for="list in listRate" :listprops="list" />
+   <list v-for="list in listRate" :key="list.id" :listprops="list" />
    
  </div>
 </template>
@@ -57,10 +57,10 @@
 			},
 
 			apiFunction(datemain){
-				fetch(`http://localhost:8080/p24api/exchange_rates?json&date=${datemain}`)
+				fetch(`https://cors-anywhere.herokuapp.com/https://api.privatbank.ua/p24api/exchange_rates?json&date=${datemain}`)
 			    .then(response => {
 				    if (response.status !== 200) {
-				      this.errorLoad = 'Ошибка загрузки данных, по текущей дате не найдено записей в архиве'
+				      this.errorLoad = 'Ошибка загрузки данных, по текущей дате не найдено записей в архиве, выберите другую дату или дождитесь когда архив обновит данные'
 							this.listRate = []
 							this.activError = true;
 							this.$emit('preloaderStarus', true)
